@@ -20,10 +20,15 @@ async def yo(ctx,summoner: str):
     lol = Lolmain(summoner,'LAN')
     datos = lol.saludar()
     elo = lol.rank()
-    #elo2 = lol.rank2()
-    #tier2 = elo2['tier']
-    #lp2 = elo2['leaguePoints']
-    #rank2 = elo2['rank']
+    elo2 = lol.rank2()
+
+    tier2 = elo2['tier']
+    lp2 = elo2['leaguePoints']
+    rank2 = elo2['rank']
+    wins2 = elo2['wins']
+    lossses2= elo2['losses']
+    #num2 = roman_to_int(rank2)
+
 
     saludos = datos['saludar']
     icon_url = datos['icon_url']
@@ -34,24 +39,29 @@ async def yo(ctx,summoner: str):
     lossses= elo['losses']
     num = roman_to_int(rank)
 
-    emb= discord.Embed(title=saludos,
-    description = f'SOLO/DUO {tier} {rank} LP: {lp}',
-    colour = discord.Colour.blue())
-
-    
-    
+    emb= discord.Embed(title="Estadisticas",
+    description = f'example',
+    color = discord.Colour.dark_magenta()
+    )
+    emb.set_author(name=saludos,icon_url= icon_url)
+    #Inicio ^
+    #Solo duo stats v
+    emb.add_field(name='Solo/Duo',value=f'{tier} {rank} {lp}PL', inline= True)
     emb.add_field(name='Victorias',value=wins , inline= True)
     emb.add_field(name='Derrotas',value=lossses , inline= True)
 
-    #emb.add_field(name=f'Flex {tier2} {rank2} LP: {lp2}' , inline= False)
+    #Flex stats
+    emb.add_field(name='Flexible',value=f'{tier2} {rank2} {lp2}PL', inline= True)
+    emb.add_field(name='Vistorias',value=wins2 , inline= True)
+    emb.add_field(name='Derrotas',value=lossses2 , inline= True)
 
-    emb.set_footer(text='por @JK11LL GitHub.')
-    emb.set_image(url=icon_url)
+    #imagen esquina derecha "elo"
     emb.set_thumbnail(url=f'https://opgg-static.akamaized.net/images/medals/{tier.lower()}_{num}.png?image=q_auto:best&v=1')
+    emb.set_footer(text='por @JK11LL GitHub.')
     await ctx.send(embed=emb)
 
 
 
 
 
-bot.run('discord-token-here') 
+bot.run('discord-token') 

@@ -7,7 +7,7 @@ class Lolconfig:
         self.summoner = summoner
         self.region = region
         #guardar headers
-        self.headers = {'X-Riot-Token': 'riot-token-here'}
+        self.headers = {'X-Riot-Token': 'riot-token'}
 
     def start(self):
         #LAN server, buscar usuario
@@ -26,7 +26,7 @@ class Lolmain(Lolconfig):
         nivel = summoner['summonerLevel']
         icon_id = summoner['profileIconId']
 
-        saludar = f'El invocador {nombre}, es nivel {nivel}.'
+        saludar = f'{nombre}, nivel {nivel}.'
         icon_url  = f'https://ddragon.leagueoflegends.com/cdn/11.6.1/img/profileicon/{icon_id}.png'
         return { 'saludar': saludar, 'icon_url': icon_url}
 
@@ -35,7 +35,7 @@ class Lolmain(Lolconfig):
         summoner_id = summoner['id']
         url = f'https://la1.api.riotgames.com/lol/league/v4/entries/by-summoner/{summoner_id}'
         response = requests.get(url, headers=self.headers)
-        return response.json()[0]
+        return response.json()[1]
 
     def rank2(self):
         summoner = self.start()
