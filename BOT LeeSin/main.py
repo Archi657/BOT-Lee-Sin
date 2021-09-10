@@ -5,7 +5,7 @@ from utils.api import Lolmain
 from utils.number import roman_to_int
 
 bot = commands.Bot(command_prefix='-', description='Lee Sin LOL STATS')
-
+#console
 @bot.event
 async def on_ready():
     print('Ready to start working')
@@ -14,22 +14,22 @@ async def on_ready():
 @bot.command()
 async def ayuda(ctx):
     await ctx.send('pa casa platita')
-
+#yo command
 @bot.command()
 async def yo(ctx,summoner: str):
     lol = Lolmain(summoner,'LAN')
     datos = lol.saludar()
     elo = lol.rank()
     elo2 = lol.rank2()
-
+#flex
     tier2 = elo2['tier']
     lp2 = elo2['leaguePoints']
     rank2 = elo2['rank']
     wins2 = elo2['wins']
     lossses2= elo2['losses']
-    #num2 = roman_to_int(rank2)
+    num2 = roman_to_int(rank2)
 
-
+#solo duo+datos basicos
     saludos = datos['saludar']
     icon_url = datos['icon_url']
     tier = elo['tier']
@@ -38,7 +38,7 @@ async def yo(ctx,summoner: str):
     wins = elo['wins']
     lossses= elo['losses']
     num = roman_to_int(rank)
-
+#embed
     emb= discord.Embed(title="Estadisticas",
     description = f'example',
     color = discord.Colour.dark_magenta()
@@ -57,11 +57,8 @@ async def yo(ctx,summoner: str):
 
     #imagen esquina derecha "elo"
     emb.set_thumbnail(url=f'https://opgg-static.akamaized.net/images/medals/{tier.lower()}_{num}.png?image=q_auto:best&v=1')
+    emb.set_image(url=f'https://opgg-static.akamaized.net/images/medals/{tier2.lower()}_{num2}.png?image=q_auto:best&v=1')
     emb.set_footer(text='por @JK11LL GitHub.')
     await ctx.send(embed=emb)
-
-
-
-
 
 bot.run('discord-token') 
