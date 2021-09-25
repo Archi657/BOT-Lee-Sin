@@ -1,5 +1,5 @@
 # BOT-Lee-Sin
-Bot para obtener estadisticas de "lol" en discord, para usuarios del servidor LAN
+Discord bot , using RIOT API for get stadistics from the game League of Legends.
 
 Add discord bot api key here /main.py
 
